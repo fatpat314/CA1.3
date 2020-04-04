@@ -18,84 +18,39 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
-    decimalnum = 0
     digits = digits[::-1]
 
-    if base == 2:
-        for i in range(len(digits)):
-            number = digits[i]
-            number = int(number)
-            print("number", number)
-            decimalnum += number * base**i
-        return(decimalnum)
+    digit_list = list(digits)
+    new_list = []
+    for i in digit_list:
+        if i in list(string.ascii_uppercase):
+            count = 10
+            for letter in string.ascii_uppercase:
+                if i == letter:
+                    new_list.append(count)
+                else:
+                    count += 1
+        elif i in list(string.ascii_lowercase):
+            count = 10
+            for letter in string.ascii_lowercase:
+                if i == letter:
+                    new_list.append(count)
+                else:
+                    count += 1
+        else:
+            new_list.append(i)
 
-    # TODO: Decode digits from hexadecimal (base 16)
-    elif base == 16:
+    d_num = 0
+    for i in range(len(new_list)):
+        number = new_list[i]
+        number = int(number)
+        print("number", number)
+        d_num += number * base**i
+    return d_num
 
-        # split digits into list.
-        digit_list = list(digits)
-        # each number in the list
-        new_list = []
-        for i in digit_list:
-            if i in list(string.ascii_uppercase):
-                count = 10
-                for letter in string.ascii_uppercase:
-                    if i == letter:
-                        new_list.append(count)
-                    else:
-                        count += 1
-            elif i in list(string.ascii_lowercase):
-                count = 10
-                for letter in string.ascii_lowercase:
-                    if i == letter:
-                        new_list.append(count)
-                    else:
-                        count += 1
-            else:
-                new_list.append(i)
 
-        d_num = 0
-        for i in range(len(new_list)):
-            number = new_list[i]
-            number = int(number)
-            print("number", number)
-            d_num += number * base**i
-        return d_num
+# print(decode("23G", 36))
 
-    else:
-        digit_list = list(digits)
-        # each number in the list
-        new_list = []
-        for i in digit_list:
-            if i in list(string.ascii_uppercase):
-                count = 10
-                for letter in string.ascii_uppercase:
-                    if i == letter:
-                        new_list.append(count)
-                    else:
-                        count += 1
-            elif i in list(string.ascii_lowercase):
-                count = 10
-                for letter in string.ascii_lowercase:
-                    if i == letter:
-                        new_list.append(count)
-                    else:
-                        count += 1
-            else:
-                new_list.append(i)
-
-        d_num = 0
-        for i in range(len(new_list)):
-            number = new_list[i]
-            number = int(number)
-            print("number", number)
-            d_num += number * base**i
-        return d_num
-
-print(decode("1A", 32))
-
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
 
 
 def encode(number, base):
@@ -108,11 +63,33 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
     # TODO: Encode number in binary (base 2)
-    encode = number/base
+    """ input will be 5. ouput 0101 """
+
+
     # TODO: Encode number in hexadecimal (base 16)
-    # ...
+    """ input will be 26. output will be 1A """
+    # make an empty string
+    ret_str = ""
+    # loop while the number is greater then 0
+    while number > 0:
+        # remainder from modulous
+        remainder = number % base
+        # number - remainder
+        number -= remainder
+        # divide number by base
+        number = number // base
+        # if remainder is greater than 9
+        if remainder > 9:
+            # remainder equals the content of the index in the alphabit
+            remainder = string.ascii_lowercase[remainder-10]
+        # conver to string
+        ret_str = str(remainder) + ret_str
+    return ret_str
     # TODO: Encode number in any base (2 up to 36)
     # ...
+
+
+print(encode(42, 16))
 
 
 def convert(digits, base1, base2):
