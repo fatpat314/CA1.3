@@ -18,37 +18,57 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
+    # This reverses the digits
     digits = digits[::-1]
-
+    # Put the digits into a list
     digit_list = list(digits)
+    # make a new list
     new_list = []
+    # loop through each index of the list
     for i in digit_list:
+        # if the content of that index is found in the alphabit
         if i in list(string.ascii_uppercase):
+            # start a counter at 10
             count = 10
+            # loop through each letter in the alphabit
             for letter in string.ascii_uppercase:
+                # if the letter is equal to the content of the index
                 if i == letter:
+                    # add the quality of count to new_list
                     new_list.append(count)
                 else:
+                    # increase count by one
                     count += 1
+        #else, if the content of that index if found in the alphabit
         elif i in list(string.ascii_lowercase):
+            # start a counter at 10
             count = 10
+            # loop through each letter in the alphabit
             for letter in string.ascii_lowercase:
+                # if the latter is equal to the content of the index
                 if i == letter:
+                    # add the quality of count to new_list
                     new_list.append(count)
                 else:
+                    # increase count by one
                     count += 1
+        # else, put the index into new_list
         else:
             new_list.append(i)
 
     d_num = 0
+    # loop through the length of new_list
     for i in range(len(new_list)):
+        # set number to be the index
         number = new_list[i]
+        # convert that to an int
         number = int(number)
         print("number", number)
+        # d_num increased by number times the base to the power of the index
         d_num += number * base**i
     return d_num
 
-
+"""uncomment this to test if decode works"""
 # print(decode("23G", 36))
 
 
@@ -88,7 +108,7 @@ def encode(number, base):
     # TODO: Encode number in any base (2 up to 36)
     # ...
 
-
+"""uncomment this to see if encode works"""
 print(encode(42, 16))
 
 
