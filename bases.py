@@ -82,9 +82,6 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    """ input will be 5. ouput 0101 """
-
 
     # TODO: Encode number in hexadecimal (base 16)
     """ input will be 26. output will be 1A """
@@ -105,12 +102,9 @@ def encode(number, base):
         # conver to string
         ret_str = str(remainder) + ret_str
     return ret_str
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
 
 """uncomment this to see if encode works"""
 # print(encode(42, 16))
-
 
 def convert(digits, base1, base2):
     """Convert given digits in base1 to digits in base2.
@@ -123,40 +117,14 @@ def convert(digits, base1, base2):
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
     # TODO: Convert digits from base 2 to base 16 (and vice versa)
     # ...
-    '''0101 => 5'''
-    # digits = digits[::-1]
-    # digits_list = list(digits)
-    # new_list = []
-    # index_number = 0
-    #
-    #
-    # for i in digits_list:
-    #
-    #     i = int(i)
-    #     number = i * base2**index_number
-    #     new_list.append(number)
-    #     index_number += 1
-    #
-    #
-    # print(new_list)
+
     old_number = decode(digits,base1)
     new_number = encode(int(old_number), base2)
     return new_number
 
 
-
-print(convert('A1', 16, 2))
-
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
-    # old_string = decode(digits,base1)
-    # new_string = encode(int(old_string), base2)
-    # return new_string
-
+"""uncomment this to see if convert works"""
+# print(convert('A1', 16, 2))
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
