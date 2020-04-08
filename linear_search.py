@@ -13,7 +13,7 @@ def iterative_search(list, target):
 #         recursive_search(list, target)
 #     return list[n]
 
-def recursive_search(list, taret):
+def recursive_search(list, taret, index = 0):
     if list[index] == target: #base case
         return target
     if index == len(list):

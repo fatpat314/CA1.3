@@ -18,6 +18,7 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
+
     # This reverses the digits
     digits = digits[::-1]
     # Put the digits into a list
@@ -121,7 +122,6 @@ def convert(digits, base1, base2):
     old_number = decode(digits,base1)
     new_number = encode(int(old_number), base2)
     return new_number
-
 
 """uncomment this to see if convert works"""
 # print(convert('A1', 16, 2))
