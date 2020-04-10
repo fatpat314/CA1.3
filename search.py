@@ -116,7 +116,7 @@ def binary_search_recursive(array, item, left=None, right=None):
 
     else:#item index is smallen then middle
         print('TEST3')
-        #Go back to start but now right == the middle minus one. 
+        #Go back to start but now right == the middle minus one.
         return binary_search_recursive(array, item, left, mid_index - 1)
 
 binary_search(['Alex', 'Brian', 'Julia', 'Kojin', 'Nabil', 'Nick','Bill'], 'Alex')
