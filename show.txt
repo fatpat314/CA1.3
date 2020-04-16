@@ -1,0 +1,36 @@
+Q1. binary to decimal
+    1 1 1 0          1 1 0 0
+    128 64 32 16     8 4 2 1
+    4 + 8 + 32 + 64 + 128 = 236
+
+Q2. decimal to binary
+    32 == 0010 0000
+    2 == 0000 0010
+    34 == 0010 0010
+
+Q3. Decode hex 0xC4A to base 10
+    0123456789ABCDEF
+    d_num += number * base**i
+    10 * 16 ** 0 = 10
+    4 * 16 ** 1 = 64
+    12 * 16 ** 2 = 3072
+    10 + 64 + 3073 = 3146
+
+Q4. Encode 79 into hex
+    79 / 16 = 4 remainder 15 = F
+    4/16 0 = 4
+
+Q6. Describe binary search.
+    Put it in a list if not already
+    First find the middle by dividing the length
+    of the list by 2.
+    Then check if the middle index is higher or
+    lower then your target.
+    If lower then you omit everything higher then your middle
+    and find the middle of the new array again by taking
+    the middle divided by 2. Check and repeat.
+    If higher then you omit everything lower then your middle
+    and find the middle of the new array again by taking the middle
+    of the new array divided by 2. check and repeat.
+    Repeat until the target is the middle number or there are
+    no numbers left.
