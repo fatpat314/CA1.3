@@ -6,6 +6,17 @@ import string
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 
+def punctuation(text):
+    "There must be a better way"
+    text = text.lower()
+    text = text.replace(" ", "")
+    text = text.replace("?", "")
+    text = text.replace("!", "")
+    text = text.replace("-", "")
+    text = text.replace(".", "")
+    text = text.replace(",", "")
+    text = text.replace("\'", "")
+    return text
 
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
@@ -13,13 +24,15 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    # return is_palindrome_iterative(text)
-    return is_palindrome_recursive(text)
-
+    return is_palindrome_iterative(text)
+    # return is_palindrome_recursive(text)
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
     # take the input and turn it into a list.
+    text = punctuation(text)
+    print(text)
+    text_list = list(text)
     text = list(text)
     # make veriables for front and back
     left = 0
@@ -47,37 +60,45 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    # if left and right == :
-    text = text.lower()
-    text = text.strip()
+
+    "There must be a better way to remove punctuation"
+    text = punctuation(text)
     print(text)
     text_list = list(text)
-    left = 0
-    right = len(text_list) -1
 
-    if text == '' or len(text_list) == 1:
-        # print("wrong")
-        return True
+    if left is None and right is None:
+        left = 0
+        right = len(text_list) - 1
+        truth = None
 
+    if len(text_list) == 1 or text == '': #√
+        truth = True
+
+    if left >= right:
+        truth = True
+        return truth
     if text_list[left] != text_list[right]:
-        # print("wrong")
-        return False
+        print(left,right)
+        truth = False
+        print("Truth = ", truth)
+        print(text_list[left], text_list[right])
+        return truth
 
-
-
-    # if left == right:
-    #     print("yes")
-    if left == right:
-        print("yes")
-
-        is_palindrome_recursive(text, left + 1, right - 1)
-        # print("yes")
-        # count += 1
-    return True
-    # return True
+    if left < right:
+        if text_list[left] == text_list[right]:
+            print(left,right)
+            truth = True
+            print("Truth = ", truth)
+            print(text_list[left], text_list[right])
+            return is_palindrome_recursive(text, left + 1, right - 1)
 
 # print(is_palindrome_recursive("deed"))
-print(is_palindrome_recursive("A B"))
+print(is_palindrome_recursive("taco? cat."))
+# print(is_palindrome_recursive("ABCZBA"))
+# print(is_palindrome_recursive("AZ"))
+# print(is_palindrome_recursive("BB"))
+# print(is_palindrome_recursive("Bb"))
+# print(is_palindrome_recursive("A"))
 # print(is_palindrome_recursive(""))
 
     # once implemented, change is_palindrome to call is_palindrome_recursive
