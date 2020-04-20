@@ -13,10 +13,12 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
-
+    # call find all indexes.
     l = find_all_indexes(text, pattern, True)
+    # if the list is not empty
     if len(l) > 0:
         return l[0]
+    # if the list is empty :(
     else:
         return None
 
@@ -27,25 +29,34 @@ def find_all_indexes(text, pattern, flag = False):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
-
+    # make an empty list
     l = list()
-
+    # loop through the indexes of text but only the amount of thats as then length of pattern
     for i in range(len(text) - len(pattern) + 1):
+        # loop through the indexes of pattern
         for j in range(len(pattern)):
+            # if the index of text plus the value of j does not equal the index of pattern
             if text[i + j] != pattern[j]:
+                # end the loop
                 break
-        else:# Found an index
+        else:
+            # Found an index
             if flag == True:
                 print(flag)
+                # put that index into the list
                 l.append(i)
+                # end
                 return l
             else:
+                # if there are still letter to check
                 if len(l) < len(text):
                     print(len(l), len(pattern))
                     print(flag)
+                    # put those letter into the list
                     l.append(i)
                 else:
                     print("else")
+                    # end
                     return l
     return l #empty list
 
