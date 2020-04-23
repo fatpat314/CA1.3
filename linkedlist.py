@@ -102,52 +102,38 @@ class LinkedList(object):
         new_node = Node(item)
         # print(new_node)
         node_count = 0
-        # current_node = self.head
+        current_node = self.head
         # print(self.head.data)
         # loop through the linked list
-        while current_node is not None:
-            if node_count == index or current_node.next == None:
-
-            node_count += 1
-            current = current.next
-            if node_count == index:
-                pass
+        print(node_count)
         if self.is_empty():
-
             self.head = new_node
-            current_node = self.head
-            # print(self.head.data)
-            self.tail = current_node
+            self.tail = new_node
             self.size += 1
-            # print(self.head.data)
-            # print(self.tail.data)
-            print("-------------")
+        node_count +=1
+        while current_node is not None:
 
-            return self.head
-        else:
-            current_node = self.head
-            self.head.next = current_node
-            self.head = new_node
-            self.size += 1
+            if index == 0:
+                print("ZERO")
+                current_node = self.head
+                self.head = new_node
+                node_count += 1
+            print(node_count, index)
             print(current_node)
 
+            if index > node_count:
+                print("HERE")
+                self.head.next = new_node
 
+            # if index > node_count:
+            #     self.tail = new_node
 
-            print("test")
-            # while node is not None:
-            #     # print("here")
-            #     if node_count == index:
-            #         node.next = new_node
-            #         return new_node
-            #     else:
-            #         node_count += 1
-        print("TEST!!!!!!!")
-        print(node_count)
-        return self.head
-
-
-
-
+            if index == current_node:
+                current_node = current_node.next
+                current_node = new_node
+                print(current_node, new_node)
+                print("here")
+            self.size += 1
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
