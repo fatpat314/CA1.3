@@ -103,37 +103,31 @@ class LinkedList(object):
         # print(new_node)
         node_count = 0
         current_node = self.head
-        # print(self.head.data)
-        # loop through the linked list
-        print(node_count)
+
+
         if self.is_empty():
             self.head = new_node
             self.tail = new_node
             self.size += 1
-        node_count +=1
-        while current_node is not None:
+            print("Head: ",self.head,"|","Tail: ",self.tail,"|","Size: ", self.size,"|","Count: ", node_count)
+            print("Index: ", index)
 
+        while current_node is not None:
+            # self.size += 1
             if index == 0:
-                print("ZERO")
                 current_node = self.head
                 self.head = new_node
-                node_count += 1
-            print(node_count, index)
-            print(current_node)
+                print("elif index == 0")
+                print("Head: ",self.head,"|","Tail: ",self.tail,"|","Size: ", self.size,"|","Count: ", node_count)
+                print("Index: ", index)
 
-            if index > node_count:
-                print("HERE")
-                self.head.next = new_node
-
-            # if index > node_count:
-            #     self.tail = new_node
-
-            if index == current_node:
-                current_node = current_node.next
-                current_node = new_node
-                print(current_node, new_node)
-                print("here")
+            elif index == self.size:
+                print("TRUE")
+                print(index)
+                self.tail = new_node
+                print("Head: ",self.head,"|","Tail: ",self.tail,"|","Size: ", self.size,"|","Count: ", node_count)
             self.size += 1
+            current_node = current_node.next
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -162,9 +156,11 @@ class LinkedList(object):
         if self.is_empty():
             # Assign tail to new node
             self.tail = new_node
+            self.size += 1
         else:
             # Otherwise insert new node before head
             new_node.next = self.head
+            self.size += 1
         # Update head to new node regardless
         self.head = new_node
 
@@ -193,7 +189,22 @@ class LinkedList(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
-        pass
+        current_node = self.head
+        node_list = []
+
+        while current_node is not None:
+
+            if current_node.data == old_item:
+                print(current_node, old_item)
+                current_node.data = new_item
+                print("current node data: ", current_node.data)
+                print("Tail: ", self.tail)
+            node_list.append(current_node.data)
+            print("node list: ",node_list)
+            current_node = current_node.next
+
+        if new_item not in node_list:
+            raise ValueError
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
